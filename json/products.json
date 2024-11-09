@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "priefTitle": "Waffle",
+    "title": "Waffle with Berries",
+    "price": 6.5,
+    "quantity": 0,
+    "imgSrc": "WaffleWithBerries",
+    "alt": "waffle"
+  },
+  {
+    "id": 2,
+    "priefTitle": "Creme Brulee",
+    "title": "Vanilla Bean Creme Brulee",
+    "price": 7.0,
+    "quantity": 0,
+    "imgSrc": "VanillaBeanCremeBrulee",
+    "alt": "Creme Brulee"
+  },
+  {
+    "id": 3,
+    "priefTitle": "Macaron",
+    "title": "Macaron Mix",
+    "price": 8.0,
+    "quantity": 0,
+    "imgSrc": "MacaronMix",
+    "alt": "Macaron"
+  },
+  {
+    "id": 4,
+    "priefTitle": "Tiramisu",
+    "title": "Classic Tiramisu",
+    "price": 5.5,
+    "quantity": 0,
+    "imgSrc": "ClassicTiramisu",
+    "alt": "Tiramisu"
+  },
+  {
+    "id": 5,
+    "priefTitle": "Baklava",
+    "title": "Pistachio Baklava",
+    "price": 4.0,
+    "quantity": 0,
+    "imgSrc": "PistachioBaklava",
+    "alt": "Baklava"
+  },
+  {
+    "id": 6,
+    "priefTitle": "Pie",
+    "title": "Lemon Meringue Pie",
+    "price": 5.0,
+    "quantity": 0,
+    "imgSrc": "LemonMeringuePie",
+    "alt": "Pie"
+  },
+  {
+    "id": 7,
+    "priefTitle": "Cake",
+    "title": "Red Velvet Cake",
+    "price": 4.5,
+    "quantity": 0,
+    "imgSrc": "RedVelvetCake",
+    "alt": "Cake"
+  },
+  {
+    "id": 8,
+    "priefTitle": "Brownie",
+    "title": "Salted Caramel Brownie",
+    "price": 5.5,
+    "quantity": 0,
+    "imgSrc": "SaltedCaramelBrownie",
+    "alt": "Brownie"
+  },
+  {
+    "id": 9,
+    "priefTitle": "Panna Cotta",
+    "title": "Vanilla Panna Cotta",
+    "price": 6.5,
+    "quantity": 0,
+    "imgSrc": "VanillaPannaCotta",
+    "alt": "Panna Cotta"
+  }
+]
