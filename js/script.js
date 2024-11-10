@@ -4,10 +4,10 @@ let floatBtn = document.getElementById("floating_btn");
 
 window.onscroll = function () {
   if (window.scrollY > 600) {
-    floatBtn.style.display = "block";
+    floatBtn.classList.add("show");
   } else {
-    floatBtn.style.display = "none";
-  };
+    floatBtn.classList.remove("show");
+  }
 };
 
 floatBtn.onclick = function () {
