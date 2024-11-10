@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Awessome Library -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- CSS File -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- tab image -->
+    <link rel="shortcut icon" href="../assets/ClassicTiramisu.jpg" />
+    <title>Product list with Cart</title>
+  </head>
+  <body>
+    <section class="content">
+      <div class="container">
+        <section class="products_side">
+          <h1>Desserts</h1>
+          <div class="products" id="products">
+            <!-- Code in Js -->
+          </div>
+          <div class="not_found_data">
+            <h2>404</h2>
+            <p>
+              Oops! There is a problem that will be solved as soon as possible.
+            </p>
+          </div>
+        </section>
+        <section class="cart_side">
+          <div class="items">
+            <h2>Your Cart (<span id="items_count">0</span>)</h2>
+            <div class="items_cart">
+              <ul></ul>
+              <div class="total_price flexCenterBetween">
+                <p>Order Total</p>
+                <h3 id="order_total">$0</h3>
+              </div>
+              <div class="carbon flexCenter">
+                <i class="fa-solid fa-fire"></i>
+                <p>This is a <span>carbon-neutral</span> delivery</p>
+              </div>
+              <button id="confirm_order">Confirm Order</button>
+            </div>
+            <!-- Message There Are No items in the Cart -->
+            <div class="no_items">
+              <img src="../assets/cake.svg" alt="cake" loading="lazy">
+              <p>Your added items will appear here</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <script src="../js/script.js"></script>
+  </body>
+</html>
