@@ -1,3 +1,23 @@
+/* ========================== Floating Button ======================= */
+
+let floatBtn = document.getElementById("floating_btn");
+
+window.onscroll = function () {
+  if (window.scrollY > 600) {
+    floatBtn.style.display = "block";
+  } else {
+    floatBtn.style.display = "none";
+  };
+};
+
+floatBtn.onclick = function () {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth"
+  });
+};
+
 /* ==================== Show Products Data In Page ==================== */
 let products = document.getElementById("products");
 let notFound = document.querySelector(".not_found_data");
@@ -7,6 +27,7 @@ let cartUl = document.querySelector(".items_cart ul");
 let orderTotal = document.getElementById("order_total");
 let noItems = document.querySelector(".no_items");
 let confirmOrder = document.getElementById("confirm_order");
+// let orderDone = document.querySelector(".order_done");
 let productsArr = [];
 
 if (window.localStorage.getItem("cartProducts")) {
@@ -93,8 +114,37 @@ function addToCartBtn(result) {
       let currentProduct = e.currentTarget.closest('.product').getAttribute('data-id');
       // Add Products To Array
       addProductsToArray(result[currentProduct]);
+      notOrderDone();
     })
   })
+}
+// Create Notification Order Done Message
+function notOrderDone() {
+  let orderDone = document.createElement("div");
+  orderDone.classList.add("order_done", "flexCenterBetween");
+
+  let orderDoneIcon = document.createElement("i");
+  orderDoneIcon.classList.add("fas", "fa-check");
+
+  let orderDoneMsg = document.createElement("p");
+  orderDoneMsg.textContent = "Done !";
+
+  orderDone.appendChild(orderDoneIcon);
+  orderDone.appendChild(orderDoneMsg);
+
+  document.body.appendChild(orderDone);
+
+  // Show Notification Order Done Message
+  orderDone.classList.add("show");
+  setTimeout(() => {
+    orderDone.classList.remove("show");
+    orderDone.classList.add("hide");
+  }, 2000);
+
+  // After 2 seconds, hide is removed to be ready to appear next time.
+  setTimeout(() => {
+    orderDone.classList.remove("hide");
+  }, 500);
 }
 
 // Add Products To Array
@@ -132,9 +182,18 @@ function fillProductToCart(productsArr) {
   cartUl.innerHTML = "";
 
   if (productsArr.length === 0) {
+    // No products found, show "No products found" message and hide cart
     itemsCart.style.display = "none";
     noItems.style.display = "block";
   } else {
+    // To Show the scroll in a consistently
+    if (productsArr.length > 5) {
+      cartUl.style.paddingRight = "20px";
+    } else {
+      cartUl.style.paddingRight = "0";
+    }
+
+    // There are products, show cart and hide message
     itemsCart.style.display = "block";
     noItems.style.display = "none";
     productsArr.forEach((product) => {
@@ -157,9 +216,70 @@ function fillProductToCart(productsArr) {
   });
 
   // Confirm Order Popup
+  createLayoutAndShowPopup(productsArr);
+};
+
+function createLayoutCartProducts(product) {
+  // Create a new <li> element
+  let listItem = document.createElement("li");
+  listItem.classList.add("item", "flexCenterBetween");
+  listItem.setAttribute("data-id", product.id);
+
+  // Create the div inside the li
+  let productDiv = document.createElement("div");
+
+  // Add product title
+  let title = document.createElement("h4");
+  title.textContent = product.title;
+  productDiv.appendChild(title);
+
+  // Add additional information (quantity and price)
+  let priceDiv = document.createElement("div");
+  priceDiv.classList.add("flex");
+
+  let quantitySpan = document.createElement("span");
+  quantitySpan.id = "count";
+  quantitySpan.textContent = `${product.quantity}x`;
+  priceDiv.appendChild(quantitySpan);
+
+  let priceSpan = document.createElement("span");
+  priceSpan.id = "price";
+  priceSpan.innerHTML = `<span>@</span> $${product.price}`;
+  priceDiv.appendChild(priceSpan);
+
+  let totalPriceSpan = document.createElement("span");
+  totalPriceSpan.id = "total_price_item";
+  totalPriceSpan.textContent = `$${product.price * product.quantity}`;
+  priceDiv.appendChild(totalPriceSpan);
+
+  productDiv.appendChild(priceDiv);
+
+  // Add the div to the <li> element
+  listItem.appendChild(productDiv);
+
+  // Create the button to delete the product
+  let deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("flexCenter", "del");
+
+  // Add icon to delete product
+  let icon = document.createElement("i");
+  icon.classList.add("fa-solid", "fa-close");
+  deleteBtn.appendChild(icon);
+
+  listItem.appendChild(deleteBtn);
+
+  // Add li to ul
+  cartUl.appendChild(listItem);
+}
+
+// Confirm Order Popup
+function createLayoutAndShowPopup(productsArr) {
   if (confirmOrder) {
     confirmOrder.onclick = function () {
-      console.log(productsArr, productsArr.length)
+      // Container Div To Wrappering Content
+      let containerDiv = document.createElement("div");
+      containerDiv.classList.add("container");
+
       let confirmPopup = document.createElement("div");
       confirmPopup.classList.add("confirm_popup");
 
@@ -189,7 +309,7 @@ function fillProductToCart(productsArr) {
       for (let i = 0; i < productsArr.length; i++) {
         // Create a new <li> element
         let listItem = document.createElement("li");
-        listItem.classList.add("item", "flexCenterBetween");
+        listItem.classList.add("item", "flexEndBetween");
         listItem.setAttribute("data-id", productsArr[i].id);
 
         // Create the div inside the li
@@ -247,11 +367,18 @@ function fillProductToCart(productsArr) {
       let orderTotalPara = document.createElement("p");
       orderTotalPara.textContent = "Order Total";
 
-      let orderTotalH3 = document.createElement("h3");
-      orderTotalH3.id = "order_total";
+      let orderTotal = document.createElement("h3");
+      orderTotal.id = "order_total";
+
+      // The process of collecting the order Total
+      let sum = 0;
+      productsArr.forEach(product => {
+        sum += product.price * product.quantity;
+      });
+      orderTotal.innerHTML = `$${sum}`;
 
       totalPrice.appendChild(orderTotalPara);
-      totalPrice.appendChild(orderTotalH3);
+      totalPrice.appendChild(orderTotal);
 
       let newOrder = document.createElement("button");
       newOrder.id = "new_order";
@@ -265,75 +392,44 @@ function fillProductToCart(productsArr) {
       popUp.appendChild(confirmedItems);
       popUp.appendChild(newOrder);
 
-      confirmPopup.appendChild(popUp);
+      containerDiv.appendChild(popUp);
+      confirmPopup.appendChild(containerDiv);
       document.body.appendChild(confirmPopup);
 
+      // Prevent scrolling
+      document.body.style.overflow = "hidden";
+
       // Hide Popup
-      newOrder.addEventListener("click", function () {
+      newOrder.addEventListener("click", function (productsArr) {
+        // Re-enable page scrolling and hide popup
+        document.body.style.overflow = "auto";
         confirmPopup.style.display = "none";
+
+        // Remove all products from localStorage
+        window.localStorage.removeItem("cartProducts");
+        productsArr = [];
+
+        // Update the shopping cart view to show "No products found"
+        fillProductToCart(productsArr);
       })
     }
   }
-};
-
-function createLayoutCartProducts(product) {
-  // Create a new <li> element
-  let listItem = document.createElement("li");
-  listItem.classList.add("item", "flexCenterBetween");
-  listItem.setAttribute("data-id", product.id);
-
-  // Create the div inside the li
-  let productDiv = document.createElement("div");
-
-  // Add product title
-  let title = document.createElement("h4");
-  title.textContent = product.title;
-  productDiv.appendChild(title);
-
-  // Add additional information (quantity and price)
-  let priceDiv = document.createElement("div");
-  priceDiv.classList.add("flex");
-
-  let quantitySpan = document.createElement("span");
-  quantitySpan.id = "count";
-  quantitySpan.textContent = `${product.quantity}x`;
-  priceDiv.appendChild(quantitySpan);
-
-  let priceSpan = document.createElement("span");
-  priceSpan.id = "price";
-  priceSpan.innerHTML = `<span>@</span> $${product.price}`;
-  priceDiv.appendChild(priceSpan);
-
-  let totalPriceSpan = document.createElement("span");
-  totalPriceSpan.id = "total_price_item";
-  totalPriceSpan.textContent = `$${product.price * product.quantity}`;
-  priceDiv.appendChild(totalPriceSpan);
-
-  productDiv.appendChild(priceDiv);
-
-  // Add the div to the <li> element
-  listItem.appendChild(productDiv);
-
-  // Create the button to delete the product
-  let deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("flexCenter", "del");
-
-  // Add icon to delete product
-  let icon = document.createElement("i");
-  icon.classList.add("fa-solid", "fa-close");
-  deleteBtn.appendChild(icon);
-
-  listItem.appendChild(deleteBtn);
-
-  // Add li to ul
-  cartUl.appendChild(listItem);
 }
 
 function getProductsFromLocalStorage() {
   let data = window.localStorage.getItem("cartProducts");
   if (data) {
     let products = JSON.parse(data);
-    fillProductToCart(products);
+    if (products.length > 0) {
+      // If products are present, they are displayed in the cart.
+      fillProductToCart(products);
+    } else {
+      // If the array is empty, the default message is displayed.
+      fillProductToCart([]);
+    }
+  } else {
+    // If there is no data in localStorage, the default message is displayed.
+    fillProductToCart([]);
   }
 }
 // Trigger Get Products From localStorage Fucntion
@@ -363,6 +459,7 @@ function deleteProductWith(productId, currentTarget) {
 
 // Number of Cart Products & Order Total
 function totalPriceAndProductsCount(productsArr) {
+  // The process of collecting the order Total
   let sum = 0;
   productsArr.forEach(product => {
     sum += product.price * product.quantity;
