@@ -7,7 +7,6 @@
   --light-kakaw-color: #f3f1ee;
   --black-color: #01030a;
   --white-color: white;
-  --error-color: rgb(240, 53, 53);
   --valid-color: rgb(2, 156, 2);
   --section-padding: 80px;
   --transition: all 0.3s;
@@ -27,16 +26,96 @@ body {
 
 ul {
   list-style: none;
+  overflow-y: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
 }
 
-a {
-  text-decoration: none;
-  cursor: pointer;
+ul::-webkit-scrollbar,
+ul::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+}
+
+ul::-webkit-scrollbar {
+  background-color: var(--kakaw-color);
+  width: 5px;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: var(--bold-orange-color);
+}
+
+ul li > div {
+  gap: 15px;
 }
 
 img {
   max-width: 100%;
   border-radius: 8px;
+}
+
+/* ============================= Floating Button ============================= */
+
+.floating {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  color: var(--primary-color);
+  background-color: var(--brwon-color);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  display: none;
+}
+
+/* ============================= Mdeia Query ============================= */
+
+@media (min-width: 426px) and (max-width: 769px) {
+  .floating {
+    right: 23px;
+    bottom: 83px;
+  }
+}
+
+@media (max-width: 425px) {
+  .floating {
+    right: 15px;
+    bottom: 15px;
+  }
+}
+
+.order_done {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--white-color);
+  background-color: var(--valid-color);
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 20px;
+  gap: 10px;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.5s, top 0.5s;
+}
+
+.order_done.show {
+  top: 20px;
+  opacity: 1;
+}
+
+.order_done.hide {
+  top: -100px;
+  opacity: 0;
+}
+
+.order_done i {
+  font-size: 20px;
 }
 
 /* ============================= Container ============================= */
@@ -83,16 +162,6 @@ img {
   align-items: center;
 }
 
-.flexAlignStart {
-  display: flex;
-  align-items: flex-start;
-}
-
-.flexJustifyCenter {
-  display: flex;
-  justify-content: center;
-}
-
 .flexCenter {
   display: flex;
   align-items: center;
@@ -108,17 +177,6 @@ img {
 .flexEndBetween {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
-}
-
-.flexBetween {
-  display: flex;
-  justify-content: space-between;
-}
-
-.flexColumnBetween {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -193,7 +251,6 @@ button {
 .products_side .products .info h2 {
   color: var(--brwon-color);
   font-size: 18px;
-  /* white-space: nowrap; */
 }
 
 .products_side .products .info span {
@@ -234,7 +291,6 @@ button {
 }
 
 .cart_side .no_items {
-  /* display: none; */
   text-align: center;
 }
 
@@ -251,6 +307,10 @@ button {
 
 .cart_side .no_items :is(img, p) {
   text-align: center;
+}
+
+.cart_side ul {
+  max-height: 362px;
 }
 
 :is(.cart_side ul, .confirm_popup ul) {
@@ -307,7 +367,6 @@ button {
   height: 20px !important;
   border: 1px solid var(--kakaw-color);
   border-radius: 50%;
-  cursor: pointer;
 }
 
 .total_price {
@@ -409,37 +468,11 @@ button {
 
 .confirm_popup .confirmed_items {
   background-color: var(--primary-color);
-  /* padding: 0 20px; */
 }
 
 .confirm_popup .confirmed_items ul {
-  padding: 0 0 0 20px;
+  padding: 0 20px;
   max-height: 305px;
-  overflow-y: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-}
-
-.confirm_popup .confirmed_items ul::-webkit-scrollbar,
-.confirm_popup .confirmed_items ul::-webkit-scrollbar-thumb {
-  border-radius: 30px;
-}
-
-.confirm_popup .confirmed_items ul::-webkit-scrollbar {
-  background-color: var(--kakaw-color);
-  width: 5px;
-}
-
-.confirm_popup .confirmed_items ul::-webkit-scrollbar-thumb {
-  background-color: var(--kakaw-color);
-}
-
-.confirm_popup .confirmed_items ul li > div {
-  gap: 15px;
-}
-
-.confirm_popup .confirmed_items ul li {
-  padding-right: 20px;
 }
 
 .confirm_popup .confirmed_items h4 {
@@ -492,7 +525,33 @@ button {
   }
 
   .cart_side {
-    padding: 10px 0 40px;
+    padding: 10px 0 80px;
+  }
+}
+
+@media (max-width: 376px) {
+  .confirm_popup .confirmed_items ul {
+    max-height: 226.71px;
+  }
+
+  .confirm_popup .popup {
+    padding: 20px;
+  }
+
+  .confirm_popup .popup h2 {
+    font-size: 30px;
+  }
+
+  .confirm_popup .popup p {
+    font-size: 14px;
+  }
+
+  .confirm_popup .confirmed_items h4 {
+    font-size: 12px;
+  }
+
+  .confirm_popup ul li > div {
+    gap: 10px;
   }
 }
 
