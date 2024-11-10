@@ -167,7 +167,7 @@ function fillProductToCart(productsArr) {
       popUp.classList.add("popup");
 
       let closeIcon = document.createElement("i");
-      closeIcon.classList = "fa-solid fa-close flexCenter";
+      closeIcon.classList.add("fas", "fa-check", "flexCenter");
 
       let popUpTitle = document.createElement("div");
       popUpTitle.classList.add("title");
