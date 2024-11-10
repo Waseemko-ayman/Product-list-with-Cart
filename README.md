@@ -9,10 +9,10 @@ A simple project that displays a list of products with the ability to add these 
 - There is a button to complete the purchase process (Note: It is a fake button that only shows a popup containing the products you have added to the cart, then there is a button to start a new purchase process with the deletion of all previous products so that you can start over.)
 - Simple and easy to use design.
 
-- ## Technologies used:
+## Technologies used:
 - HTML
 - CSS
 - JavaScript (Vanilla JS)
 
-- ## Developer:
+## Developer:
 - [ًWaseem Abd Elhadi]
