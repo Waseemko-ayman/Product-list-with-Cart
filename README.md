@@ -1,7 +1,7 @@
 # Simple Product list with Cart
 A simple project that displays a list of products with the ability to add these products to the cart. It allows users to browse and add to the cart in an easy and simple way.
 
-(./assets/webDesign-1.png)
+./assets/webDesign-1.png
 
 ## Features:
 - Display a list of products with simple details.
@@ -16,9 +16,9 @@ A simple project that displays a list of products with the ability to add these 
 - CSS
 - JavaScript (Vanilla JS)
 
-(./assets/webDesign-2.png)
-(./assets/webDesign-3.png)
-(./assets/webDesign-4.png)
+./assets/webDesign-2.png
+./assets/webDesign-3.png
+./assets/webDesign-4.png
 
 ## Developer:
 - [ًWaseem Abd Elhadi]
