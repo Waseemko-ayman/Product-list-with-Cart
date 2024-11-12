@@ -20,7 +20,7 @@
 
 body {
   background-color: var(--primary-color);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: cursive;
   font-display: swap;
 }
 
@@ -54,6 +54,54 @@ img {
   border-radius: 8px;
 }
 
+/* ============================= Loading ============================= */
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  z-index: 99999;
+}
+
+.loading .logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading .logo div {
+  gap: 20px;
+  font-weight: bold;
+}
+
+.loading h2 {
+  font-size: 50px;
+}
+
+.loading img {
+  width: 90px;
+}
+
+/* ============================= Mdeia Query ============================= */
+
+@media (max-width: 426px) {
+  .loading div {
+    flex-direction: column;
+  }
+
+  .loading h2 {
+    font-size: 30px;
+  }
+
+  .loading div img {
+    width: 70px;
+  }
+}
+
 /* ============================= Floating Button ============================= */
 
 .floating {
@@ -71,14 +119,12 @@ img {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: var(--transition);
 }
 
 .floating.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
 }
 
 /* ============================= Mdeia Query ============================= */
@@ -96,6 +142,8 @@ img {
     bottom: 15px;
   }
 }
+
+/* ======================= Order Completed Message ======================= */
 
 .order_done {
   position: fixed;

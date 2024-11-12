@@ -1,3 +1,12 @@
+/* ========================== Loading Page ======================= */
+
+window.addEventListener("load", function () {
+  let loader = document.querySelector(".loading");
+  setTimeout(() => {
+    loader.style.display = "none";
+  }, 2000);
+})
+
 /* ========================== Floating Button ======================= */
 
 let floatBtn = document.getElementById("floating_btn");
@@ -27,7 +36,6 @@ let cartUl = document.querySelector(".items_cart ul");
 let orderTotal = document.getElementById("order_total");
 let noItems = document.querySelector(".no_items");
 let confirmOrder = document.getElementById("confirm_order");
-// let orderDone = document.querySelector(".order_done");
 let productsArr = [];
 
 if (window.localStorage.getItem("cartProducts")) {
