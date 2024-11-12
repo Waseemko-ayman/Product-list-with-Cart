@@ -91,14 +91,11 @@ img {
 @media (max-width: 426px) {
   .loading div {
     flex-direction: column;
-  }
-
-  .loading h2 {
-    font-size: 30px;
+    gap: 10px;
   }
 
   .loading div img {
-    width: 70px;
+    width: 100px;
   }
 }
 
@@ -620,6 +617,14 @@ button {
   .products_side .image button {
     width: calc(100% - 50px);
     font-size: 12px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 426px) {
+  .products_side img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
   }
 }
 

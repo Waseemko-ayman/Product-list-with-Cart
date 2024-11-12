@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Preconnect and DNS Prefetch speed up connections to remote servers such as external networks (CDNs). -->
+    <link rel="preconnect" href="https://cdn.example.com">
+    <link rel="dns-prefetch" href="https://cdn.example.com">
     <!-- Awessome Library -->
     <link rel="stylesheet" href="../css/all.min.css">
     <!-- CSS File -->
@@ -79,6 +82,6 @@
         </section>
       </div>
     </div>
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" defer></script>
   </body>
 </html>
