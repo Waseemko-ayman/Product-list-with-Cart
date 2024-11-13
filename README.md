@@ -20,4 +20,4 @@ A simple project that displays a list of products with the ability to add these 
 ![webDesign-3](https://github.com/user-attachments/assets/d78c72e4-dff1-4cfc-85a0-5a2dec1fc0c2)
 
 ## Developer:
-- [Waseem Abd Elhadi]
+- [Waseem A. Abd Elhadi]
