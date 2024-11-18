@@ -24,6 +24,14 @@ body {
   font-display: swap;
 }
 
+::-webkit-scrollbar {
+  background-color: var(--kakaw-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--bold-orange-color);
+}
+
 ul {
   list-style: none;
   overflow-y: auto;
@@ -181,7 +189,6 @@ img {
   display: grid;
   grid-template-columns: 70% 1fr;
   gap: 20px;
-  max-width: 100%;
 }
 
 /* Small screens */
@@ -364,7 +371,7 @@ button {
 }
 
 .cart_side ul {
-  max-height: 362px;
+  max-height: 316.57px;
 }
 
 :is(.cart_side ul, .confirm_popup ul) {
@@ -522,11 +529,12 @@ button {
 
 .confirm_popup .confirmed_items {
   background-color: var(--primary-color);
+  border-radius: 4px;
 }
 
 .confirm_popup .confirmed_items ul {
   padding: 0 20px;
-  max-height: 305px;
+  max-height: 312px;
 }
 
 .confirm_popup .confirmed_items h4 {

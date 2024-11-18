@@ -2,7 +2,11 @@
 
 window.addEventListener("load", function () {
   let loader = document.querySelector(".loading");
+  // Prevent scrolling
+  document.body.style.overflow = "hidden";
   setTimeout(() => {
+    // Prevent scrolling
+    document.body.style.overflow = "auto";
     loader.style.display = "none";
   }, 2000);
 })
@@ -195,7 +199,7 @@ function fillProductToCart(productsArr) {
     noItems.style.display = "block";
   } else {
     // To Show the scroll in a consistently
-    if (productsArr.length > 5) {
+    if (productsArr.length >= 5) {
       cartUl.style.paddingRight = "20px";
     } else {
       cartUl.style.paddingRight = "0";
@@ -294,8 +298,8 @@ function createLayoutAndShowPopup(productsArr) {
       let popUp = document.createElement("div");
       popUp.classList.add("popup");
 
-      let closeIcon = document.createElement("i");
-      closeIcon.classList.add("fas", "fa-check", "flexCenter");
+      let checkIcon = document.createElement("i");
+      checkIcon.classList.add("fas", "fa-check", "flexCenter");
 
       let popUpTitle = document.createElement("div");
       popUpTitle.classList.add("title");
@@ -395,7 +399,7 @@ function createLayoutAndShowPopup(productsArr) {
       confirmedItems.appendChild(ul);
       confirmedItems.appendChild(totalPrice);
 
-      popUp.appendChild(closeIcon);
+      popUp.appendChild(checkIcon);
       popUp.appendChild(popUpTitle);
       popUp.appendChild(confirmedItems);
       popUp.appendChild(newOrder);
@@ -408,14 +412,20 @@ function createLayoutAndShowPopup(productsArr) {
       document.body.style.overflow = "hidden";
 
       // Hide Popup
-      newOrder.addEventListener("click", function (productsArr) {
+      newOrder.addEventListener("click", () => {
         // Re-enable page scrolling and hide popup
         document.body.style.overflow = "auto";
+        // Hide Popup
         confirmPopup.style.display = "none";
 
-        // Remove all products from localStorage
+        // Clear all products from localStorage
         window.localStorage.removeItem("cartProducts");
+        
+        // Clear products array
         productsArr = [];
+
+        // Update In LocalStorage
+        addProductsToLocalStorage(productsArr);
 
         // Update the shopping cart view to show "No products found"
         fillProductToCart(productsArr);
